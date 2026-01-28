@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viral Hook Generator | Failing to Success</title>
+    <meta name="description" content="Generate 10 viral content hooks for your topic in seconds. Free tool from FTS.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+        }
+        
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: rgba(212, 168, 83, 0.1);
+            border: 1px solid #d4a853;
+            color: #d4a853;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            color: #94a3b8;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            background: #1e293b;
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid #334155;
+            margin-bottom: 24px;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #e2e8f0;
+        }
+        
+        .label-hint {
+            font-weight: 400;
+            color: #64748b;
+            font-size: 13px;
+        }
+        
+        input[type="text"], select {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 16px;
+            border: 2px solid #334155;
+            border-radius: 10px;
+            background: #0f172a;
+            color: #e2e8f0;
+            transition: border-color 0.2s;
+        }
+        
+        input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: #d4a853;
+        }
+        
+        input[type="text"]::placeholder {
+            color: #64748b;
+        }
+        
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+        .platform-btn {
+            padding: 12px;
+            border: 2px solid #334155;
+            border-radius: 10px;
+            background: #0f172a;
+            color: #94a3b8;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .platform-btn:hover {
+            border-color: #475569;
+            color: #e2e8f0;
+        }
+        
+        .platform-btn.active {
+            border-color: #d4a853;
+            background: rgba(212, 168, 83, 0.1);
+            color: #d4a853;
+        }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 16px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #d4a853 0%, #b8860b 100%);
+            color: #0f172a;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 168, 83, 0.3);
+        }
+        
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Results */
+        .results-section {
+            display: none;
+        }
+        
+        .results-section.visible {
+            display: block;
+        }
+        
+        .hook-card {
+            background: #0f172a;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 12px;
+            border-left: 3px solid #d4a853;
+            position: relative;
+        }
+        
+        .hook-number {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 28px;
+            height: 28px;
+            background: #d4a853;
+            color: #0f172a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        
+        .hook-text {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #e2e8f0;
+        }
+        
+        .hook-copy {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: transparent;
+            border: 1px solid #475569;
+            color: #94a3b8;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .hook-copy:hover {
+            border-color: #d4a853;
+            color: #d4a853;
+        }
+        
+        .locked-hooks {
+            background: linear-gradient(180deg, transparent 0%, #1e293b 60%);
+            padding: 60px 24px 24px;
+            margin-top: -40px;
+            text-align: center;
+            border-radius: 0 0 12px 12px;
+        }
+        
+        .locked-hooks h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        
+        .locked-hooks p {
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+        
+        .email-form {
+            display: flex;
+            gap: 10px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .email-form input {
+            flex: 1;
+        }
+        
+        .email-form button {
+            padding: 14px 24px;
+            white-space: nowrap;
+        }
+        
+        .unlocked-section {
+            display: none;
+        }
+        
+        .unlocked-section.visible {
+            display: block;
+        }
+        
+        .cta-card {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            margin-top: 32px;
+        }
+        
+        .cta-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+        
+        .cta-card p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 20px;
+        }
+        
+        .cta-card .btn-primary {
+            background: #eab308;
+            max-width: 280px;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid #334155;
+            color: #64748b;
+            font-size: 14px;
+        }
+        
+        .footer a {
+            color: #d4a853;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 600px) {
+            h1 { font-size: 28px; }
+            .platform-grid { grid-template-columns: repeat(2, 1fr); }
+            .email-form { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="badge">✨ Free Tool</div>
+            <h1>Viral Hook Generator</h1>
+            <p class="subtitle">Get 10 scroll-stopping hooks for your content in seconds</p>
+        </div>
+        
+        <!-- Input Section -->
+        <div class="card" id="inputSection">
+            <div class="form-group">
+                <label>What topic do you create content about? <span class="label-hint">(be specific)</span></label>
+                <input type="text" id="topicInput" placeholder="e.g., B2B sales, real estate investing, leadership">
+            </div>
+            
+            <div class="form-group">
+                <label>Which platform is this for?</label>
+                <div class="platform-grid">
+                    <button class="platform-btn active" data-platform="all">All</button>
+                    <button class="platform-btn" data-platform="linkedin">LinkedIn</button>
+                    <button class="platform-btn" data-platform="youtube">YouTube</button>
+                    <button class="platform-btn" data-platform="tiktok">TikTok</button>
+                    <button class="platform-btn" data-platform="twitter">Twitter/X</button>
+                    <button class="platform-btn" data-platform="instagram">Instagram</button>
+                </div>
+            </div>
+            
+            <button class="btn-primary" id="generateBtn" onclick="generateHooks()">
+                Generate My Hooks 🔥
+            </button>
+        </div>
+        
+        <!-- Results Section -->
+        <div class="results-section" id="resultsSection">
+            <div class="card">
+                <h2 style="margin-bottom: 24px; font-size: 20px;">🔥 Your Viral Hooks for "<span id="topicDisplay"></span>"</h2>
+                
+                <div id="freeHooks"></div>
+                
+                <div class="locked-hooks" id="lockedSection">
+                    <h3>🔒 Unlock 7 More Hooks</h3>
+                    <p>Plus get our Hook Swipe File with 50+ proven templates</p>
+                    <div class="email-form">
+                        <input type="email" id="emailInput" placeholder="Enter your email">
+                        <button class="btn-primary" onclick="unlockHooks()">Unlock</button>
+                    </div>
+                </div>
+                
+                <div class="unlocked-section" id="unlockedSection">
+                    <div id="remainingHooks"></div>
+                </div>
+            </div>
+            
+            <div class="cta-card">
+                <h3>Want hooks like these written weekly?</h3>
+                <p>Our team creates 120+ pieces of content per month for CEOs and founders.</p>
+                <a href="https://calendly.com/chad-fts/videxpert" class="btn-primary" style="text-decoration: none;">Book a Strategy Call →</a>
+            </div>
+            
+            <button class="btn-primary" style="margin-top: 20px; background: #334155;" onclick="resetGenerator()">
+                Generate More Hooks
+            </button>
+        </div>
+        
+        <div class="footer">
+            <p>Built by <a href="https://ftspod.com">Failing to Success</a> • 70M+ views generated for clients</p>
+        </div>
+    </div>
+    
+    <script>
+        // Platform selection
+        document.querySelectorAll('.platform-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Hook templates
+        const hookTemplates = [
+            "I {achieved} in {timeframe}. Here's exactly how.",
+            "Stop {common_mistake}. Do this instead.",
+            "The {role} who {unexpected_thing} taught me this about {topic}.",
+            "{number} {topic} mistakes that are killing your {outcome}.",
+            "Most people {wrong_approach}. Top performers {right_approach}.",
+            "Here's why your {thing} isn't working (and how to fix it).",
+            "I spent {time_money} learning {topic}. Here's the shortcut.",
+            "You don't need {thing_everyone_thinks}. You need this.",
+            "What {impressive_people} know about {topic} that you don't.",
+            "The {topic} cheat code nobody talks about."
+        ];
+        
+        // Topic-specific fills
+        function generateHookForTopic(template, topic) {
+            const fills = {
+                achieved: [`mastered ${topic}`, `built a 6-figure ${topic} business`, `10x'd my ${topic} results`, `went viral talking about ${topic}`],
+                timeframe: ['90 days', '6 months', '1 year', '30 days'],
+                common_mistake: [`posting ${topic} content without this`, `thinking ${topic} is complicated`, `ignoring ${topic} trends`, `doing ${topic} the old way`],
+                role: ['CEO', 'founder', 'expert', 'mentor', 'top performer'],
+                unexpected_thing: ['never posts', 'started at 50', 'failed 3 times first', 'had no experience'],
+                topic: topic,
+                number: ['5', '7', '3', '10'],
+                outcome: ['results', 'growth', 'success', 'revenue', 'reach'],
+                wrong_approach: [`study ${topic} theory`, `wait for the perfect time`, `go it alone`, `copy others`],
+                right_approach: [`master ${topic} fundamentals`, `start before they're ready`, `build a system`, `find their unique angle`],
+                thing: [`${topic} strategy`, `${topic} content`, `${topic} approach`, `${topic} results`],
+                time_money: ['10 years', '$50,000', '1,000 hours', '5 years'],
+                thing_everyone_thinks: [`more ${topic} tactics`, `a bigger audience`, `perfect timing`, `more resources`],
+                impressive_people: ['top 1% of creators', 'industry leaders', 'viral creators', 'successful founders']
+            };
+            
+            let hook = template;
+            for (const [key, values] of Object.entries(fills)) {
+                const regex = new RegExp(`{${key}}`, 'g');
+                const randomValue = Array.isArray(values) ? values[Math.floor(Math.random() * values.length)] : values;
+                hook = hook.replace(regex, randomValue);
+            }
+            return hook;
+        }
+        
+        let generatedHooks = [];
+        let currentTopic = '';
+        
+        function generateHooks() {
+            const topic = document.getElementById('topicInput').value.trim();
+            if (!topic) {
+                alert('Please enter a topic');
+                return;
+            }
+            
+            currentTopic = topic;
+            generatedHooks = hookTemplates.map(template => generateHookForTopic(template, topic));
+            
+            // Shuffle hooks
+            generatedHooks.sort(() => Math.random() - 0.5);
+            
+            // Display topic
+            document.getElementById('topicDisplay').textContent = topic;
+            
+            // Display first 3 hooks
+            const freeHooksContainer = document.getElementById('freeHooks');
+            freeHooksContainer.innerHTML = generatedHooks.slice(0, 3).map((hook, i) => `
+                <div class="hook-card">
+                    <div class="hook-number">${i + 1}</div>
+                    <p class="hook-text">"${hook}"</p>
+                    <button class="hook-copy" onclick="copyHook(this, '${hook.replace(/'/g, "\\'")}')">Copy</button>
+                </div>
+            `).join('');
+            
+            // Show results, hide input
+            document.getElementById('inputSection').style.display = 'none';
+            document.getElementById('resultsSection').classList.add('visible');
+        }
+        
+        function unlockHooks() {
+            const email = document.getElementById('emailInput').value.trim();
+            if (!email || !email.includes('@')) {
+                alert('Please enter a valid email');
+                return;
+            }
+            
+            // Send to Beehiiv (you'll need to update this endpoint)
+            const beehiivData = {
+                email: email,
+                topic: currentTopic,
+                lead_source: 'Hook Generator'
+            };
+            
+            // For now, just log it - integrate with Beehiiv API later
+            console.log('Sending to Beehiiv:', beehiivData);
+            
+            // TODO: Add actual Beehiiv integration
+            // fetch('YOUR_BEEHIIV_ENDPOINT', {
+            //     method: 'POST',
+            //     body: JSON.stringify(beehiivData)
+            // });
+            
+            // Show remaining hooks
+            const remainingHooksContainer = document.getElementById('remainingHooks');
+            remainingHooksContainer.innerHTML = generatedHooks.slice(3).map((hook, i) => `
+                <div class="hook-card">
+                    <div class="hook-number">${i + 4}</div>
+                    <p class="hook-text">"${hook}"</p>
+                    <button class="hook-copy" onclick="copyHook(this, '${hook.replace(/'/g, "\\'")}')">Copy</button>
+                </div>
+            `).join('');
+            
+            // Hide locked section, show unlocked
+            document.getElementById('lockedSection').style.display = 'none';
+            document.getElementById('unlockedSection').classList.add('visible');
+        }
+        
+        function copyHook(btn, text) {
+            navigator.clipboard.writeText(text);
+            btn.textContent = 'Copied!';
+            setTimeout(() => btn.textContent = 'Copy', 2000);
+        }
+        
+        function resetGenerator() {
+            document.getElementById('inputSection').style.display = 'block';
+            document.getElementById('resultsSection').classList.remove('visible');
+            document.getElementById('lockedSection').style.display = 'block';
+            document.getElementById('unlockedSection').classList.remove('visible');
+            document.getElementById('topicInput').value = '';
+            document.getElementById('emailInput').value = '';
+        }
+    </script>
+</body>
+</html>
