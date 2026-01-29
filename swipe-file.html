@@ -275,9 +275,35 @@
             text-decoration: none;
         }
         
+        /* Floating CTA button */
+        .floating-cta {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.5);
+            z-index: 1000;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .floating-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(99, 102, 241, 0.6);
+        }
+        
         @media print {
             .cta-section { break-inside: avoid; }
             .category { break-inside: avoid; }
+            .floating-cta { display: none; }
         }
         
         @media (max-width: 600px) {
@@ -288,6 +314,11 @@
     </style>
 </head>
 <body>
+    <!-- Floating CTA -->
+    <a href="https://calendly.com/chad-fts/videxpert" target="_blank" class="floating-cta">
+        📞 Book a Call
+    </a>
+
     <div class="container">
         <div class="header">
             <div class="badge">Free Resource</div>
