@@ -44,9 +44,8 @@ export default async function handler(req, res) {
                     utm_source: 'hook_generator',
                     utm_medium: 'website',
                     custom_fields: [
-                        { name: 'hook_topic', value: topic || '' },
-                        { name: 'coresocial', value: platform || '' },
-                        { name: 'lead_source', value: 'Hook Generator' }
+                        { name: 'topic_hookgen', value: topic || '' },
+                        { name: 'platform_hookgen', value: platform || '' }
                     ]
                 })
             }
