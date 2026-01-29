@@ -311,18 +311,25 @@
         }
         
         .cta-box {
+            display: inline-block;
             background: rgba(255,255,255,0.15);
-            padding: 24px;
+            padding: 24px 40px;
             border-radius: 12px;
             margin-top: 30px;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
+            text-decoration: none;
+            color: white;
+            transition: background 0.2s, transform 0.2s;
+        }
+        
+        .cta-box:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
         }
         
         .cta-box h3 {
             font-size: 14pt;
             margin-bottom: 8px;
+            color: white;
         }
         
         .cta-url {
@@ -627,10 +634,10 @@
             </div>
         </div>
         
-        <div class="cta-box">
-            <h3>Book a Free Strategy Call</h3>
+        <a href="https://calendly.com/chad-fts/videxpert" target="_blank" class="cta-box">
+            <h3>📞 Book a Free Strategy Call</h3>
             <div class="cta-url">calendly.com/chad-fts</div>
-        </div>
+        </a>
     </div>
     </div>
 </body>
