@@ -266,16 +266,12 @@
         
         /* CTA PAGE */
         .cta-page {
-            page-break-before: always;
             text-align: center;
             padding: 60px 40px;
             background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
             color: white;
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
             border-radius: 12px;
+            margin-top: 40px;
         }
         
         .cta-page h2 {
@@ -352,7 +348,6 @@
                 print-color-adjust: exact;
             }
             .cta-page { 
-                page-break-before: always;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
@@ -581,10 +576,9 @@
         <div class="footer">
             © Failing to Success | ftspod.com
         </div>
-    </div>
 
-    <!-- CTA PAGE -->
-    <div class="cta-page">
+        <!-- CTA SECTION -->
+        <div class="cta-page">
         <h2>Want Hooks Like These<br>Written For You?</h2>
         <p>Our team creates 120+ pieces of viral content for CEOs and founders every month — from one 60-minute recording.</p>
         
@@ -607,6 +601,7 @@
             <h3>Book a Free Strategy Call</h3>
             <div class="cta-url">ftspod.com/call</div>
         </div>
+    </div>
     </div>
 </body>
 </html>
