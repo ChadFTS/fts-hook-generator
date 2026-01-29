@@ -45,7 +45,7 @@ export default async function handler(req, res) {
                     utm_medium: 'website',
                     custom_fields: [
                         { name: 'topic_hookgen', value: topic || '' },
-                        { name: 'platform_hookgen', value: platform || '' }
+                        { name: 'coresocial', value: platform || '' }
                     ]
                 })
             }
