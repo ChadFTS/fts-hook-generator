@@ -58,7 +58,14 @@ export default async function handler(req, res) {
             return res.status(response.status).json({ error: data.message || 'Subscription failed' });
         }
 
-        return res.status(200).json({ success: true, data });
+        return res.status(200).json({ 
+            success: true, 
+            data,
+            debug: {
+                pubId: PUBLICATION_ID.slice(0, 10) + '...',
+                status: response.status
+            }
+        });
     } catch (error) {
         console.error('Subscription error:', error);
         return res.status(500).json({ error: 'Internal server error' });

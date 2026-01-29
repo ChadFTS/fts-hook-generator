@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Viral Hook Swipe File | 50+ Proven Templates</title>
+    <style>
+        @page {
+            margin: 0.5in;
+            size: letter;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #ffffff;
+            color: #1a1a2e;
+            line-height: 1.5;
+            font-size: 11pt;
+        }
+        
+        .container {
+            max-width: 7.5in;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* COVER PAGE */
+        .cover {
+            text-align: center;
+            padding: 80px 40px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d2d4a 100%);
+            color: white;
+            page-break-after: always;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .cover-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4a853 0%, #b8860b 100%);
+            color: #1a1a2e;
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+        
+        .cover h1 {
+            font-size: 42pt;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #ffffff;
+            line-height: 1.1;
+        }
+        
+        .cover-subtitle {
+            font-size: 16pt;
+            color: #a0aec0;
+            margin-bottom: 40px;
+        }
+        
+        .cover-features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .cover-feature {
+            text-align: center;
+        }
+        
+        .cover-feature-number {
+            font-size: 28pt;
+            font-weight: 800;
+            color: #d4a853;
+        }
+        
+        .cover-feature-label {
+            font-size: 10pt;
+            color: #718096;
+        }
+        
+        .cover-logo {
+            margin-top: 60px;
+            font-size: 14pt;
+            color: #d4a853;
+            font-weight: 700;
+        }
+        
+        .cover-logo span {
+            color: #718096;
+            font-weight: 400;
+        }
+        
+        /* CONTENT PAGES */
+        .intro {
+            background: #f7fafc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid #d4a853;
+        }
+        
+        .intro h2 {
+            font-size: 14pt;
+            margin-bottom: 12px;
+            color: #1a1a2e;
+        }
+        
+        .intro ol {
+            margin-left: 20px;
+            color: #4a5568;
+        }
+        
+        .intro li {
+            margin-bottom: 6px;
+        }
+        
+        .intro code {
+            background: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: inherit;
+            color: #92400e;
+        }
+        
+        .pro-tip {
+            background: #6366f1;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-top: 12px;
+            font-size: 10pt;
+        }
+        
+        .pro-tip strong {
+            color: #fbbf24;
+        }
+        
+        .category {
+            margin-bottom: 28px;
+            page-break-inside: avoid;
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #d4a853;
+        }
+        
+        .category-emoji {
+            font-size: 20pt;
+        }
+        
+        .category-title {
+            font-size: 14pt;
+            font-weight: 700;
+            color: #1a1a2e;
+        }
+        
+        .category-subtitle {
+            font-size: 9pt;
+            color: #718096;
+            font-style: italic;
+            margin-left: auto;
+        }
+        
+        .hook-list {
+            list-style: none;
+        }
+        
+        .hook-item {
+            display: flex;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid #edf2f7;
+            align-items: flex-start;
+        }
+        
+        .hook-item:last-child {
+            border-bottom: none;
+        }
+        
+        .hook-number {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            background: #edf2f7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9pt;
+            font-weight: 700;
+            color: #718096;
+        }
+        
+        .hook-text {
+            font-size: 10pt;
+            color: #2d3748;
+            line-height: 1.4;
+        }
+        
+        .hook-text code {
+            background: #fef3c7;
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-family: inherit;
+            color: #92400e;
+            font-size: 9pt;
+        }
+        
+        /* PLATFORM TIPS */
+        .platform-tips {
+            background: #1a1a2e;
+            color: #e2e8f0;
+            border-radius: 8px;
+            padding: 24px;
+            margin: 30px 0;
+            page-break-inside: avoid;
+        }
+        
+        .platform-tips h2 {
+            color: #d4a853;
+            margin-bottom: 16px;
+            font-size: 14pt;
+        }
+        
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .platform-card h3 {
+            color: #ffffff;
+            font-size: 11pt;
+            margin-bottom: 8px;
+        }
+        
+        .platform-card ul {
+            margin-left: 14px;
+            color: #a0aec0;
+            font-size: 9pt;
+        }
+        
+        .platform-card li {
+            margin-bottom: 4px;
+        }
+        
+        /* CTA PAGE */
+        .cta-page {
+            page-break-before: always;
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+            color: white;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-radius: 12px;
+        }
+        
+        .cta-page h2 {
+            font-size: 24pt;
+            margin-bottom: 16px;
+        }
+        
+        .cta-page p {
+            font-size: 12pt;
+            opacity: 0.95;
+            margin-bottom: 8px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        
+        .cta-stat {
+            text-align: center;
+        }
+        
+        .cta-stat-number {
+            font-size: 24pt;
+            font-weight: 800;
+            color: #fbbf24;
+        }
+        
+        .cta-stat-label {
+            font-size: 9pt;
+            opacity: 0.85;
+        }
+        
+        .cta-box {
+            background: rgba(255,255,255,0.15);
+            padding: 24px;
+            border-radius: 12px;
+            margin-top: 30px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-box h3 {
+            font-size: 14pt;
+            margin-bottom: 8px;
+        }
+        
+        .cta-url {
+            font-size: 16pt;
+            font-weight: 700;
+            color: #fbbf24;
+            word-break: break-all;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            color: #a0aec0;
+            font-size: 9pt;
+        }
+        
+        @media print {
+            .cover { 
+                page-break-after: always;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .cta-page { 
+                page-break-before: always;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .category { 
+                page-break-inside: avoid; 
+            }
+            .platform-tips {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- COVER PAGE -->
+    <div class="cover">
+        <div class="cover-badge">Free Resource from FTS</div>
+        <h1>The Viral Hook<br>Swipe File</h1>
+        <p class="cover-subtitle">50+ Proven Hook Templates That Stop the Scroll</p>
+        
+        <div class="cover-features">
+            <div class="cover-feature">
+                <div class="cover-feature-number">54</div>
+                <div class="cover-feature-label">Hook Templates</div>
+            </div>
+            <div class="cover-feature">
+                <div class="cover-feature-number">7</div>
+                <div class="cover-feature-label">Categories</div>
+            </div>
+            <div class="cover-feature">
+                <div class="cover-feature-number">4</div>
+                <div class="cover-feature-label">Platform Tips</div>
+            </div>
+        </div>
+        
+        <div class="cover-logo">
+            FAILING TO SUCCESS <span>| ftspod.com</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- INTRO -->
+        <div class="intro">
+            <h2>📋 How to Use This Swipe File</h2>
+            <ol>
+                <li>Pick a category that matches your content goal</li>
+                <li>Choose a template that fits your topic</li>
+                <li>Fill in the <code>[brackets]</code> with your specific details</li>
+                <li>Test 2-3 variations to see what resonates with your audience</li>
+            </ol>
+            <div class="pro-tip">
+                <strong>Pro tip:</strong> The best hooks create curiosity, promise value, or challenge assumptions. Combine multiple formulas for maximum impact.
+            </div>
+        </div>
+
+        <!-- RESULTS & NUMBERS -->
+        <div class="category">
+            <div class="category-header">
+                <span class="category-emoji">🎯</span>
+                <span class="category-title">Results & Numbers</span>
+                <span class="category-subtitle">Lead with proof. Numbers stop the scroll.</span>
+            </div>
+            <ul class="hook-list">
+                <li class="hook-item"><span class="hook-number">1</span><span class="hook-text">"I <code>[achieved result]</code> in <code>[timeframe]</code>. Here's the exact playbook."</span></li>
+                <li class="hook-item"><span class="hook-number">2</span><span class="hook-text">"<code>[Number]</code>% of <code>[audience]</code> get this wrong. Here's what actually works."</span></li>
+                <li class="hook-item"><span class="hook-number">3</span><span class="hook-text">"From <code>[starting point]</code> to <code>[impressive result]</code> in <code>[timeframe]</code>. Thread:"</span></li>
+                <li class="hook-item"><span class="hook-number">4</span><span class="hook-text">"I've <code>[done thing]</code> <code>[number]</code> times. Here's what I learned."</span></li>
+                <li class="hook-item"><span class="hook-number">5</span><span class="hook-text">"This one change increased my <code>[metric]</code> by <code>[percentage]</code>."</span></li>
+                <li class="hook-item"><span class="hook-number">6</span><span class="hook-text">"<code>[Number]</code> <code>[things]</code> that took me from <code>[before]</code> to <code>[after]</code>."</span></li>
+                <li class="hook-item"><span class="hook-number">7</span><span class="hook-text">"I spent $<code>[amount]</code> testing <code>[thing]</code>. Save yourself the money—here's what works."</span></li>
+                <li class="hook-item"><span class="hook-number">8</span><span class="hook-text">"<code>[Number]</code> years of <code>[experience]</code> condensed into <code>[number]</code> lessons."</span></li>
+            </ul>
+        </div>
+
+        <!-- CURIOSITY -->
+        <div class="category">
+            <div class="category-header">
+                <span class="category-emoji">🤔</span>
+                <span class="category-title">Curiosity & Open Loops</span>
+                <span class="category-subtitle">Make them need to know.</span>
+            </div>
+            <ul class="hook-list">
+                <li class="hook-item"><span class="hook-number">9</span><span class="hook-text">"Nobody talks about the dark side of <code>[topic]</code>. Let me explain."</span></li>
+                <li class="hook-item"><span class="hook-number">10</span><span class="hook-text">"The real reason <code>[common thing]</code> doesn't work (it's not what you think)."</span></li>
+                <li class="hook-item"><span class="hook-number">11</span><span class="hook-text">"I was today years old when I realized <code>[insight]</code>."</span></li>
+                <li class="hook-item"><span class="hook-number">12</span><span class="hook-text">"There's a secret <code>[industry]</code> experts don't want you to know."</span></li>
+                <li class="hook-item"><span class="hook-number">13</span><span class="hook-text">"Everyone's doing <code>[thing]</code>. Almost everyone's doing it wrong."</span></li>
+                <li class="hook-item"><span class="hook-number">14</span><span class="hook-text">"What I'm about to share got me <code>[result]</code>. And almost no one does it."</span></li>
+                <li class="hook-item"><span class="hook-number">15</span><span class="hook-text">"The <code>[topic]</code> advice that sounds smart but destroys <code>[outcome]</code>."</span></li>
+                <li class="hook-item"><span class="hook-number">16</span><span class="hook-text">"Something weird happens when you <code>[do thing]</code>. Here's what I mean:"</span></li>
+            </ul>
+        </div>
+
+        <!-- CONTRARIAN -->
+        <div class="category">
+            <div class="category-header">
+                <span class="category-emoji">🔥</span>
+                <span class="category-title">Contrarian & Hot Takes</span>
+                <span class="category-subtitle">Challenge the status quo.</span>
+            </div>
+            <ul class="hook-list">
+                <li class="hook-item"><span class="hook-number">17</span><span class="hook-text">"Unpopular opinion: <code>[contrarian statement]</code>."</span></li>
+                <li class="hook-item"><span class="hook-number">18</span><span class="hook-text">"Stop <code>[common advice]</code>. It's killing your <code>[outcome]</code>."</span></li>
+                <li class="hook-item"><span class="hook-number">19</span><span class="hook-text">"<code>[Popular thing]</code> is overrated. Here's what actually matters."</span></li>
+                <li class="hook-item"><span class="hook-number">20</span><span class="hook-text">"The worst <code>[topic]</code> advice I've ever heard: '<code>[common advice]</code>'"</span></li>
+                <li class="hook-item"><span class="hook-number">21</span><span class="hook-text">"I'm going to say something that might upset some people."</span></li>
+                <li class="hook-item"><span class="hook-number">22</span><span class="hook-text">"<code>[Thing everyone does]</code> is a waste of time. Do this instead."</span></li>
+                <li class="hook-item"><span class="hook-number">23</span><span class="hook-text">"Hot take: <code>[bold statement about industry]</code>."</span></li>
+                <li class="hook-item"><span class="hook-number">24</span><span class="hook-text">"Everyone told me <code>[common wisdom]</code>. They were all wrong."</span></li>
+            </ul>
+        </div>
+
+        <!-- STORY -->
+        <div class="category">
+            <div class="category-header">
+                <span class="category-emoji">📖</span>
+                <span class="category-title">Story & Narrative</span>
+                <span class="category-subtitle">People remember stories.</span>
+            </div>
+            <ul class="hook-list">
+                <li class="hook-item"><span class="hook-number">25</span><span class="hook-text">"A <code>[person]</code> once told me something I'll never forget."</span></li>
+                <li class="hook-item"><span class="hook-number">26</span><span class="hook-text">"Last week, I <code>[experienced something]</code> that changed my perspective on <code>[topic]</code>."</span></li>
+                <li class="hook-item"><span class="hook-number">27</span><span class="hook-text">"3 years ago, I was <code>[past situation]</code>. Here's what changed everything."</span></li>
+                <li class="hook-item"><span class="hook-number">28</span><span class="hook-text">"The best <code>[role]</code> I ever met taught me this:"</span></li>
+                <li class="hook-item"><span class="hook-number">29</span><span class="hook-text">"I'll never forget the day I <code>[pivotal moment]</code>."</span></li>
+                <li class="hook-item"><span class="hook-number">30</span><span class="hook-text">"True story: <code>[brief setup that creates intrigue]</code>"</span></li>
+                <li class="hook-item"><span class="hook-number">31</span><span class="hook-text">"In 2019, I <code>[made mistake]</code>. Biggest lesson of my career."</span></li>
+                <li class="hook-item"><span class="hook-number">32</span><span class="hook-text">"My <code>[mentor/boss/client]</code> said 5 words that changed everything:"</span></li>
+            </ul>
+        </div>
+
+        <!-- QUESTIONS -->
+        <div class="category">
+            <div class="category-header">
+                <span class="category-emoji">❓</span>
+                <span class="category-title">Question Hooks</span>
+                <span class="category-subtitle">Engage their brain.</span>
+            </div>
+            <ul class="hook-list">
+                <li class="hook-item"><span class="hook-number">33</span><span class="hook-text">"What would you do with an extra <code>[desirable thing]</code> per <code>[timeframe]</code>?"</span></li>
+                <li class="hook-item"><span class="hook-number">34</span><span class="hook-text">"Why do most <code>[people]</code> struggle with <code>[thing]</code> while a few <code>[achieve result]</code>?"</span></li>
+                <li class="hook-item"><span class="hook-number">35</span><span class="hook-text">"Have you ever wondered why <code>[observation]</code>?"</span></li>
+                <li class="hook-item"><span class="hook-number">36</span><span class="hook-text">"What's the #1 mistake <code>[audience]</code> make with <code>[topic]</code>?"</span></li>
+                <li class="hook-item"><span class="hook-number">37</span><span class="hook-text">"Is <code>[common belief]</code> actually true? Let's find out."</span></li>
+                <li class="hook-item"><span class="hook-number">38</span><span class="hook-text">"What if everything you knew about <code>[topic]</code> was wrong?"</span></li>
+                <li class="hook-item"><span class="hook-number">39</span><span class="hook-text">"Can you <code>[achieve result]</code> in <code>[short timeframe]</code>? Here's the truth."</span></li>
+                <li class="hook-item"><span class="hook-number">40</span><span class="hook-text">"<code>[Option A]</code> or <code>[Option B]</code>? The answer might surprise you."</span></li>
+            </ul>
+        </div>
+
+        <!-- HOW-TO -->
+        <div class="category">
+            <div class="category-header">
+                <span class="category-emoji">🎓</span>
+                <span class="category-title">How-To & Educational</span>
+                <span class="category-subtitle">Promise clear value.</span>
+            </div>
+            <ul class="hook-list">
+                <li class="hook-item"><span class="hook-number">41</span><span class="hook-text">"How to <code>[achieve result]</code> (without <code>[common obstacle]</code>)."</span></li>
+                <li class="hook-item"><span class="hook-number">42</span><span class="hook-text">"The step-by-step process I use to <code>[do thing]</code>."</span></li>
+                <li class="hook-item"><span class="hook-number">43</span><span class="hook-text">"Here's exactly how I <code>[achieved result]</code>. Steal this:"</span></li>
+                <li class="hook-item"><span class="hook-number">44</span><span class="hook-text">"<code>[Number]</code>-step framework for <code>[achieving outcome]</code>."</span></li>
+                <li class="hook-item"><span class="hook-number">45</span><span class="hook-text">"How I <code>[do impressive thing]</code> in <code>[surprisingly short time]</code>."</span></li>
+                <li class="hook-item"><span class="hook-number">46</span><span class="hook-text">"The simple system that <code>[produces result]</code> every time."</span></li>
+                <li class="hook-item"><span class="hook-number">47</span><span class="hook-text">"Master <code>[skill]</code> in <code>[timeframe]</code> with this approach."</span></li>
+                <li class="hook-item"><span class="hook-number">48</span><span class="hook-text">"The exact template I use for <code>[thing]</code>. Copy it:"</span></li>
+            </ul>
+        </div>
+
+        <!-- PAIN POINTS -->
+        <div class="category">
+            <div class="category-header">
+                <span class="category-emoji">😫</span>
+                <span class="category-title">Problem & Pain Point</span>
+                <span class="category-subtitle">Show you understand.</span>
+            </div>
+            <ul class="hook-list">
+                <li class="hook-item"><span class="hook-number">49</span><span class="hook-text">"Tired of <code>[frustrating thing]</code>? Here's what's actually going on."</span></li>
+                <li class="hook-item"><span class="hook-number">50</span><span class="hook-text">"If you're struggling with <code>[problem]</code>, read this."</span></li>
+                <li class="hook-item"><span class="hook-number">51</span><span class="hook-text">"Why <code>[thing]</code> feels so hard (and how to fix it)."</span></li>
+                <li class="hook-item"><span class="hook-number">52</span><span class="hook-text">"The hidden reason your <code>[thing]</code> isn't working."</span></li>
+                <li class="hook-item"><span class="hook-number">53</span><span class="hook-text">"<code>[Problem]</code> isn't your fault. Here's who to blame."</span></li>
+                <li class="hook-item"><span class="hook-number">54</span><span class="hook-text">"Feeling stuck with <code>[topic]</code>? You're not alone. Here's the way out."</span></li>
+            </ul>
+        </div>
+
+        <!-- PLATFORM TIPS -->
+        <div class="platform-tips">
+            <h2>🎁 Bonus: Platform-Specific Tips</h2>
+            <div class="platform-grid">
+                <div class="platform-card">
+                    <h3>LinkedIn</h3>
+                    <ul>
+                        <li>Start with a one-liner hook, then line break</li>
+                        <li>Use "I" statements — personal stories win</li>
+                        <li>End with a question to drive comments</li>
+                    </ul>
+                </div>
+                <div class="platform-card">
+                    <h3>YouTube</h3>
+                    <ul>
+                        <li>Put the hook in the first 5 seconds</li>
+                        <li>Use pattern interrupts (visual changes)</li>
+                        <li>Promise the payoff clearly in the title</li>
+                    </ul>
+                </div>
+                <div class="platform-card">
+                    <h3>TikTok / Reels</h3>
+                    <ul>
+                        <li>Hook in first 1-2 seconds or they scroll</li>
+                        <li>Text on screen reinforces verbal hook</li>
+                        <li>Controversy and curiosity = views</li>
+                    </ul>
+                </div>
+                <div class="platform-card">
+                    <h3>Twitter / X</h3>
+                    <ul>
+                        <li>First line IS the hook — no wasted words</li>
+                        <li>Threads: each tweet should stand alone</li>
+                        <li>Quote tweets with hot takes perform well</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            © Failing to Success | ftspod.com
+        </div>
+    </div>
+
+    <!-- CTA PAGE -->
+    <div class="cta-page">
+        <h2>Want Hooks Like These<br>Written For You?</h2>
+        <p>Our team creates 120+ pieces of viral content for CEOs and founders every month — from one 60-minute recording.</p>
+        
+        <div class="cta-stats">
+            <div class="cta-stat">
+                <div class="cta-stat-number">70M+</div>
+                <div class="cta-stat-label">Views Generated</div>
+            </div>
+            <div class="cta-stat">
+                <div class="cta-stat-number">100+</div>
+                <div class="cta-stat-label">CEOs Served</div>
+            </div>
+            <div class="cta-stat">
+                <div class="cta-stat-number">540K</div>
+                <div class="cta-stat-label">Avg Monthly Views</div>
+            </div>
+        </div>
+        
+        <div class="cta-box">
+            <h3>Book a Free Strategy Call</h3>
+            <div class="cta-url">ftspod.com/call</div>
+        </div>
+    </div>
+</body>
+</html>
