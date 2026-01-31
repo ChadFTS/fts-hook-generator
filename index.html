@@ -385,80 +385,62 @@
             });
         });
         
-        // Hook templates
-        const hookTemplates = [
-            "I {achieved} in {timeframe}. Here's exactly how.",
-            "Stop {common_mistake}. Do this instead.",
-            "The {role} who {unexpected_thing} taught me this about {topic}.",
-            "{number} {topic} mistakes that are killing your {outcome}.",
-            "Most people {wrong_approach}. Top performers {right_approach}.",
-            "Here's why your {thing} isn't working (and how to fix it).",
-            "I spent {time_money} learning {topic}. Here's the shortcut.",
-            "You don't need {thing_everyone_thinks}. You need this.",
-            "What {impressive_people} know about {topic} that you don't.",
-            "The {topic} cheat code nobody talks about."
-        ];
-        
-        // Topic-specific fills
-        function generateHookForTopic(template, topic) {
-            const fills = {
-                achieved: [`mastered ${topic}`, `built a 6-figure ${topic} business`, `10x'd my ${topic} results`, `went viral talking about ${topic}`],
-                timeframe: ['90 days', '6 months', '1 year', '30 days'],
-                common_mistake: [`posting ${topic} content without this`, `thinking ${topic} is complicated`, `ignoring ${topic} trends`, `doing ${topic} the old way`],
-                role: ['CEO', 'founder', 'expert', 'mentor', 'top performer'],
-                unexpected_thing: ['never posts', 'started at 50', 'failed 3 times first', 'had no experience'],
-                topic: topic,
-                number: ['5', '7', '3', '10'],
-                outcome: ['results', 'growth', 'success', 'revenue', 'reach'],
-                wrong_approach: [`study ${topic} theory`, `wait for the perfect time`, `go it alone`, `copy others`],
-                right_approach: [`master ${topic} fundamentals`, `start before they're ready`, `build a system`, `find their unique angle`],
-                thing: [`${topic} strategy`, `${topic} content`, `${topic} approach`, `${topic} results`],
-                time_money: ['10 years', '$50,000', '1,000 hours', '5 years'],
-                thing_everyone_thinks: [`more ${topic} tactics`, `a bigger audience`, `perfect timing`, `more resources`],
-                impressive_people: ['top 1% of creators', 'industry leaders', 'viral creators', 'successful founders']
-            };
-            
-            let hook = template;
-            for (const [key, values] of Object.entries(fills)) {
-                const regex = new RegExp(`{${key}}`, 'g');
-                const randomValue = Array.isArray(values) ? values[Math.floor(Math.random() * values.length)] : values;
-                hook = hook.replace(regex, randomValue);
-            }
-            return hook;
-        }
-        
         let generatedHooks = [];
         let currentTopic = '';
         
-        function generateHooks() {
+        async function generateHooks() {
             const topic = document.getElementById('topicInput').value.trim();
             if (!topic) {
                 alert('Please enter a topic');
                 return;
             }
             
-            currentTopic = topic;
-            generatedHooks = hookTemplates.map(template => generateHookForTopic(template, topic));
+            const btn = document.getElementById('generateBtn');
+            btn.disabled = true;
+            btn.textContent = 'Generating... ✨';
             
-            // Shuffle hooks
-            generatedHooks.sort(() => Math.random() - 0.5);
+            const platform = document.querySelector('.platform-btn.active')?.dataset.platform || 'all';
             
-            // Display topic
-            document.getElementById('topicDisplay').textContent = topic;
-            
-            // Display first 3 hooks
-            const freeHooksContainer = document.getElementById('freeHooks');
-            freeHooksContainer.innerHTML = generatedHooks.slice(0, 3).map((hook, i) => `
-                <div class="hook-card">
-                    <div class="hook-number">${i + 1}</div>
-                    <p class="hook-text">"${hook}"</p>
-                    <button class="hook-copy" onclick="copyHook(this, '${hook.replace(/'/g, "\\'")}')">Copy</button>
-                </div>
-            `).join('');
-            
-            // Show results, hide input
-            document.getElementById('inputSection').style.display = 'none';
-            document.getElementById('resultsSection').classList.add('visible');
+            try {
+                const response = await fetch('/api/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ topic, platform, count: 10 })
+                });
+                
+                const data = await response.json();
+                
+                if (!data.success || !data.hooks) {
+                    throw new Error(data.error || 'Failed to generate hooks');
+                }
+                
+                currentTopic = topic;
+                generatedHooks = data.hooks;
+                
+                // Display topic
+                document.getElementById('topicDisplay').textContent = topic;
+                
+                // Display first 3 hooks
+                const freeHooksContainer = document.getElementById('freeHooks');
+                freeHooksContainer.innerHTML = generatedHooks.slice(0, 3).map((hook, i) => `
+                    <div class="hook-card">
+                        <div class="hook-number">${i + 1}</div>
+                        <p class="hook-text">"${hook}"</p>
+                        <button class="hook-copy" onclick="copyHook(this, \`${hook.replace(/`/g, '\\`').replace(/\\/g, '\\\\')}\`)">Copy</button>
+                    </div>
+                `).join('');
+                
+                // Show results, hide input
+                document.getElementById('inputSection').style.display = 'none';
+                document.getElementById('resultsSection').classList.add('visible');
+                
+            } catch (error) {
+                console.error('Generation error:', error);
+                alert('Something went wrong generating hooks. Please try again.');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Generate My Hooks 🔥';
+            }
         }
         
         function unlockHooks() {
@@ -496,7 +478,7 @@
                 <div class="hook-card">
                     <div class="hook-number">${i + 4}</div>
                     <p class="hook-text">"${hook}"</p>
-                    <button class="hook-copy" onclick="copyHook(this, '${hook.replace(/'/g, "\\'")}')">Copy</button>
+                    <button class="hook-copy" onclick="copyHook(this, \`${hook.replace(/`/g, '\\`').replace(/\\/g, '\\\\')}\`)">Copy</button>
                 </div>
             `).join('');
             
