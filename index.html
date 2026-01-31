@@ -420,7 +420,18 @@
             
             const btn = document.getElementById('generateBtn');
             btn.disabled = true;
-            btn.textContent = 'Generating... ✨';
+            btn.textContent = 'Generating... ~5s ✨';
+            
+            // Countdown timer
+            let secondsLeft = 5;
+            const countdownInterval = setInterval(() => {
+                secondsLeft--;
+                if (secondsLeft > 0) {
+                    btn.textContent = `Generating... ~${secondsLeft}s ✨`;
+                } else {
+                    btn.textContent = 'Almost done... ✨';
+                }
+            }, 1000);
             
             const platform = document.querySelector('.platform-btn.active')?.dataset.platform || 'all';
             
@@ -461,6 +472,7 @@
                 console.error('Generation error:', error);
                 alert('Something went wrong generating hooks. Please try again.');
             } finally {
+                clearInterval(countdownInterval);
                 btn.disabled = false;
                 btn.textContent = 'Generate My Hooks 🔥';
             }
