@@ -14,7 +14,7 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    const { email, topic, platform } = req.body;
+    const { email, topic, platform, waitlist, interest } = req.body;
 
     if (!email) {
         return res.status(400).json({ error: 'Email is required' });
@@ -41,11 +41,12 @@ export default async function handler(req, res) {
                     email: email,
                     reactivate_existing: true,
                     send_welcome_email: true,
-                    utm_source: 'hook_generator',
+                    utm_source: waitlist ? 'hook_generator_waitlist' : 'hook_generator',
                     utm_medium: 'website',
                     custom_fields: [
                         { name: 'topic_hookgen', value: topic || '' },
-                        { name: 'coresocial', value: platform || '' }
+                        { name: 'coresocial', value: platform || '' },
+                        ...(waitlist ? [{ name: 'waitlist_hookgen', value: interest === 'yes' ? 'yes-would-pay' : 'maybe-interested' }] : [])
                     ]
                 })
             }

@@ -360,14 +360,37 @@
             </div>
             
             <div class="cta-card">
-                <h3>Want hooks like these written weekly?</h3>
-                <p>Our team creates 120+ pieces of content for you every month.</p>
+                <h3>Hooks are just step one.</h3>
+                <p>At FTS, we also record videos with you, edit everything, and distribute across 6 platforms. You show up once a month, we handle the rest.</p>
                 <a href="https://calendly.com/chad-fts/videxpert" class="btn-primary" style="text-decoration: none;">Book a Strategy Call →</a>
             </div>
             
-            <button class="btn-primary" style="margin-top: 20px; background: #334155;" onclick="resetGenerator()">
+            <button class="btn-primary" style="margin-top: 20px; background: #334155;" onclick="showWaitlistModal()">
                 Generate More Hooks
             </button>
+            
+            <!-- Waitlist Modal -->
+            <div id="waitlistModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center;">
+                <div style="background: #1e293b; border-radius: 16px; padding: 32px; max-width: 420px; margin: 20px; border: 1px solid #334155; text-align: center;">
+                    <p style="font-size: 32px; margin-bottom: 16px;">🔒</p>
+                    <h3 style="font-size: 22px; margin-bottom: 12px;">Unlimited Hooks — Coming Soon</h3>
+                    <p style="color: #94a3b8; margin-bottom: 24px;">Love the tool? We're building a pro version with unlimited generations.</p>
+                    <p style="font-weight: 600; margin-bottom: 20px;">Would you pay $10/mo for this?</p>
+                    
+                    <input type="email" id="waitlistEmail" placeholder="Enter your email" style="width: 100%; padding: 14px 16px; font-size: 16px; border: 2px solid #334155; border-radius: 10px; background: #0f172a; color: #e2e8f0; margin-bottom: 16px;">
+                    
+                    <button class="btn-primary" style="width: 100%; margin-bottom: 12px;" onclick="submitWaitlist('yes')">
+                        Yes — Add me to the waitlist
+                    </button>
+                    <button class="btn-primary" style="width: 100%; background: #334155;" onclick="submitWaitlist('maybe')">
+                        Not sure, but keep me posted
+                    </button>
+                    
+                    <button onclick="closeWaitlistModal()" style="background: none; border: none; color: #64748b; margin-top: 16px; cursor: pointer; font-size: 14px;">
+                        No thanks
+                    </button>
+                </div>
+            </div>
         </div>
         
         <div class="footer">
@@ -510,6 +533,62 @@
             document.getElementById('topicInput').value = '';
             document.getElementById('emailInput').value = '';
         }
+        
+        function showWaitlistModal() {
+            document.getElementById('waitlistModal').style.display = 'flex';
+        }
+        
+        function closeWaitlistModal() {
+            document.getElementById('waitlistModal').style.display = 'none';
+        }
+        
+        function submitWaitlist(interest) {
+            const email = document.getElementById('waitlistEmail').value.trim();
+            if (!email || !email.includes('@')) {
+                alert('Please enter a valid email');
+                return;
+            }
+            
+            const tag = interest === 'yes' ? 'waitlist-hook-generator-yes' : 'waitlist-hook-generator-maybe';
+            
+            fetch('/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email: email,
+                    topic: currentTopic || 'unknown',
+                    platform: document.querySelector('.platform-btn.active')?.dataset.platform || 'all',
+                    waitlist: true,
+                    interest: interest
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('waitlistModal').innerHTML = `
+                        <div style="background: #1e293b; border-radius: 16px; padding: 32px; max-width: 420px; margin: 20px; border: 1px solid #334155; text-align: center;">
+                            <p style="font-size: 32px; margin-bottom: 16px;">✅</p>
+                            <h3 style="font-size: 22px; margin-bottom: 12px;">You're on the list!</h3>
+                            <p style="color: #94a3b8; margin-bottom: 24px;">We'll let you know when unlimited hooks is ready.</p>
+                            <button class="btn-primary" onclick="closeWaitlistModal(); resetGenerator();">
+                                Generate New Hooks
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    alert('Something went wrong. Please try again.');
+                }
+            })
+            .catch(err => {
+                console.error('Waitlist error:', err);
+                alert('Something went wrong. Please try again.');
+            });
+        }
+        
+        // Close modal on backdrop click
+        document.getElementById('waitlistModal')?.addEventListener('click', function(e) {
+            if (e.target === this) closeWaitlistModal();
+        });
     </script>
 </body>
 </html>
